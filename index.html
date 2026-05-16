@@ -1,12 +1,50 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-419">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harmony IA — AI que paga sola en 90 días</title>
-  <meta name="description" content="Automatizamos empresas en LATAM con IA aplicada. No asesoramos — implementamos. Harmony Automate, Agents y CRM." />
-  <meta property="og:title" content="Harmony IA — AI que paga sola en 90 días" />
-  <meta property="og:description" content="Automatizamos empresas en LATAM con IA aplicada. No asesoramos — implementamos." />
+  <title>Harmony IA | Automatización con IA para Empresas en LATAM</title>
+  <meta name="description" content="Automatizamos empresas en LATAM con IA aplicada: agentes conversacionales, CRM inteligente y flujos autónomos 24/7. ROI garantizado en 90 días o seguimos sin costo adicional." />
+
+  <!-- SEO: Robots & Canonical -->
+  <!-- IMPORTANTE: Reemplaza https://www.harmonyia.com con tu dominio real -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.harmonyia.com/" />
+
+  <!-- SEO: Hreflang (SPA bilingüe ES/EN) -->
+  <link rel="alternate" hreflang="es-419" href="https://www.harmonyia.com/" />
+  <link rel="alternate" hreflang="en" href="https://www.harmonyia.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.harmonyia.com/" />
+
+  <!-- SEO: Open Graph (WhatsApp, LinkedIn, Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Harmony IA" />
+  <meta property="og:locale" content="es_419" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:url" content="https://www.harmonyia.com/" />
+  <meta property="og:title" content="Harmony IA | Automatización con IA para Empresas en LATAM" />
+  <meta property="og:description" content="Automatizamos empresas en LATAM con IA aplicada: agentes conversacionales, CRM inteligente y flujos autónomos 24/7. ROI garantizado en 90 días." />
+  <meta property="og:image" content="https://www.harmonyia.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Harmony IA — Automatización con IA para empresas en LATAM" />
+
+  <!-- SEO: Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Harmony IA | Automatización con IA para Empresas en LATAM" />
+  <meta name="twitter:description" content="Automatizamos empresas en LATAM con IA aplicada. Agentes conversacionales, CRM inteligente y flujos autónomos. ROI garantizado en 90 días." />
+  <meta name="twitter:image" content="https://www.harmonyia.com/og-image.jpg" />
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#090909" />
+  <meta name="application-name" content="Harmony IA" />
+
+  <!-- Performance: Preconnect CDNs -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -488,7 +526,30 @@
     .footer-top { grid-template-columns:1fr; }
   }
 
-  /* ═══ CINEMATIC FOOTER ═══ */
+  /* ═══ FOOTER ═══ */
+  .site-footer {
+    border-top: 1px solid var(--hairline-soft);
+    padding: 56px 0 32px;
+    margin-top: 0;
+  }
+  .sf-top { display: flex; justify-content: space-between; gap: 48px; flex-wrap: wrap; margin-bottom: 40px; }
+  .sf-brand { max-width: 260px; }
+  .sf-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-top: 4px; }
+  .sf-links { display: flex; gap: 48px; flex-wrap: wrap; }
+  .sf-col h4.sf-col-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 16px; }
+  .sf-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .sf-col a { font-size: 13px; color: var(--ink-muted); text-decoration: none; transition: color .15s; }
+  .sf-col a:hover { color: var(--ink); }
+  .sf-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--hairline-soft); padding-top: 24px; }
+  .sf-copy { font-size: 12px; color: rgba(255,255,255,.25); }
+  .sf-copy a { color: rgba(255,255,255,.25); text-decoration: none; }
+  .sf-copy a:hover { color: var(--cyan); }
+  .sf-socials { display: flex; gap: 8px; }
+  .sf-social { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--hairline); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: rgba(255,255,255,.35); text-decoration: none; transition: border-color .2s, color .2s; }
+  .sf-social:hover { border-color: rgba(0,212,255,.35); color: var(--cyan); }
+  @media (max-width: 600px) { .sf-top { flex-direction: column; } .sf-links { gap: 32px; } }
+
+  /* ═══ OLD CINEMATIC FOOTER — removed ═══ */
   .footer-curtain-wrap {
     position: relative;
     height: 100vh;
@@ -692,6 +753,159 @@
     .cf-bg-text { font-size: clamp(4rem, 24vw, 8rem); }
   }
   </style>
+
+  <!-- SEO: Structured Data / Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.harmonyia.com/#organization",
+        "name": "Harmony IA",
+        "url": "https://www.harmonyia.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.harmonyia.com/logo.png",
+          "width": 180,
+          "height": 60
+        },
+        "description": "Automatizamos empresas en LATAM con IA aplicada. Agentes conversacionales, CRM inteligente y flujos autónomos 24/7.",
+        "areaServed": { "@type": "Place", "name": "América Latina" },
+        "knowsAbout": [
+          "Automatización con IA",
+          "Agentes IA conversacionales",
+          "CRM inteligente",
+          "Automatización de procesos empresariales",
+          "Inteligencia artificial aplicada"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "120",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Carlos Martínez" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "Harmony IA transformó nuestra operación por completo. Lo que antes tomaba 4 horas ahora se hace en minutos. El ROI fue visible desde el primer mes."
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Dra. Laura Rodríguez" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "Implementaron Harmony CRM en nuestra clínica y en 30 días ya no perdíamos pacientes por falta de seguimiento. Resultados reales, sin promesas vacías."
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Jorge Peña" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "Con Harmony Agents manejamos el triple de consultas sin contratar nuevo personal."
+          }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.harmonyia.com/#website",
+        "url": "https://www.harmonyia.com",
+        "name": "Harmony IA",
+        "description": "Automatización empresarial con IA para LATAM",
+        "publisher": { "@id": "https://www.harmonyia.com/#organization" },
+        "inLanguage": ["es-419", "en"]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.harmonyia.com/#webpage",
+        "url": "https://www.harmonyia.com",
+        "name": "Harmony IA | Automatización con IA para Empresas en LATAM",
+        "description": "Automatizamos empresas en LATAM con IA aplicada: agentes conversacionales, CRM inteligente y flujos autónomos 24/7. ROI garantizado en 90 días.",
+        "isPartOf": { "@id": "https://www.harmonyia.com/#website" },
+        "about": { "@id": "https://www.harmonyia.com/#organization" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.harmonyia.com" }
+          ]
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.harmonyia.com/#harmony-automate",
+        "name": "Harmony Automate — Automatización Inteligente",
+        "description": "Convertimos procesos repetitivos en flujos autónomos que trabajan 24/7. Harmony Lead Engine, Ops Workflows y AI Copilot.",
+        "provider": { "@id": "https://www.harmonyia.com/#organization" },
+        "areaServed": "América Latina",
+        "serviceType": "Automatización de procesos con IA"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.harmonyia.com/#harmony-agents",
+        "name": "Harmony Agents — Agentes IA Conversacionales",
+        "description": "Agentes de IA que responden, califican y cierran clientes en texto y voz, 24/7, en cualquier canal. Sin fatiga, sin errores.",
+        "provider": { "@id": "https://www.harmonyia.com/#organization" },
+        "areaServed": "América Latina",
+        "serviceType": "Agentes IA conversacionales"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.harmonyia.com/#harmony-crm",
+        "name": "Harmony CRM — CRM Inteligente a Medida",
+        "description": "Implementamos y operamos tu CRM con IA integrada. Trazabilidad completa de cada lead, cliente y oportunidad.",
+        "provider": { "@id": "https://www.harmonyia.com/#organization" },
+        "areaServed": "América Latina",
+        "serviceType": "CRM inteligente con IA"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cuánto tiempo tarda la implementación?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nuestro proceso toma entre 5 días hábiles (Proyecto Único) y 30 días para el Ecosistema Completo. Auditamos tus procesos en 48 horas e implementamos sin interrumpir a tu equipo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué garantía ofrecen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si en 90 días no ves un ROI medible de tu inversión, trabajamos sin costo adicional hasta conseguirlo. Sin letra pequeña."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Para qué industrias trabajan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Especializados en Clínicas y Consultorios, E-commerce LATAM y Firmas Legales, con soluciones personalizadas para cada sector."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta la automatización con IA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Los planes comienzan desde USD $2,500 para un Proyecto Único o USD $800/mes para la Suscripción Operativa. El Ecosistema Completo comienza desde USD $2,500/mes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Necesito conocimientos técnicos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Implementamos, operamos y mantenemos todos los sistemas. Tu equipo no necesita aprender nada nuevo."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -1250,74 +1464,60 @@
 </section>
 
 
-<!-- ═══ CINEMATIC FOOTER ═══ -->
-<div class="footer-curtain-wrap" id="footer-curtain-wrap">
-  <div class="footer-curtain-inner" id="footer-curtain-inner">
-    <footer class="cinematic-footer" id="cinematic-footer">
-      <!-- Grid background -->
-      <div class="cf-grid"></div>
-      <!-- Aurora glow -->
-      <div class="cf-aurora"></div>
-      <!-- Giant background text -->
-      <div class="cf-bg-text" id="cf-bg-text">HARMONY</div>
-
-      <!-- Scrolling marquee -->
-      <div class="cf-marquee-wrap">
-        <div class="cf-marquee-track" id="cf-marquee">
-          <span>Harmony Automate</span><span class="accent">✦</span>
-          <span>Harmony Agents</span><span class="accent">✦</span>
-          <span>Harmony CRM</span><span class="accent">✦</span>
-          <span>LATAM AI Automation</span><span class="accent">✦</span>
-          <span>n8n · WhatsApp · Voice · GoHighLevel</span><span class="accent">✦</span>
-          <span>Harmony Automate</span><span class="accent">✦</span>
-          <span>Harmony Agents</span><span class="accent">✦</span>
-          <span>Harmony CRM</span><span class="accent">✦</span>
-          <span>LATAM AI Automation</span><span class="accent">✦</span>
-          <span>n8n · WhatsApp · Voice · GoHighLevel</span><span class="accent">✦</span>
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="sf-top">
+      <div class="sf-brand">
+        <a href="#inicio" class="nav-logo" style="margin-bottom:12px;display:inline-flex;">
+          <div class="nav-logo-mark">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M9 1.5L16 5.25v7.5L9 16.5l-7-3.75V5.25L9 1.5Z" stroke="white" stroke-width="1.4"/><circle cx="9" cy="9" r="2.5" fill="white"/></svg>
+          </div>
+          <span class="nav-logo-text">Harmony <span>IA</span></span>
+        </a>
+        <p class="sf-desc" data-i18n="ft.desc">Automatizamos empresas en LATAM con IA aplicada. No asesoramos — implementamos.</p>
+      </div>
+      <div class="sf-links">
+        <div class="sf-col">
+          <h4 class="sf-col-title" data-i18n="ft.srv">Servicios</h4>
+          <ul>
+            <li><a href="#servicios">Harmony Automate</a></li>
+            <li><a href="#servicios">Harmony Agents</a></li>
+            <li><a href="#servicios">Harmony CRM</a></li>
+            <li><a href="#precios" data-i18n="ft.pricing">Precios</a></li>
+          </ul>
+        </div>
+        <div class="sf-col">
+          <h4 class="sf-col-title" data-i18n="ft.co">Compañía</h4>
+          <ul>
+            <li><a href="#industrias" data-i18n="nav.industries">Industrias</a></li>
+            <li><a href="#proceso" data-i18n="nav.process">Proceso</a></li>
+            <li><a href="#casos" data-i18n="ft.cases">Casos de Éxito</a></li>
+            <li><a href="#contacto" data-i18n="ft.diag">Diagnóstico Gratis</a></li>
+          </ul>
+        </div>
+        <div class="sf-col">
+          <h4 class="sf-col-title">LATAM</h4>
+          <ul>
+            <li><a href="#">Colombia</a></li>
+            <li><a href="#">México</a></li>
+            <li><a href="#">Argentina</a></li>
+            <li><a href="#">Perú</a></li>
+          </ul>
         </div>
       </div>
-
-      <!-- Main content -->
-      <div class="cf-content">
-        <div class="cf-top">
-          <h2 class="cf-heading" id="cf-heading">
-            <span data-i18n="cta.title">¿Listo para que tu negocio trabaje mientras duermes?</span>
-          </h2>
-          <div class="cf-pills" id="cf-pills">
-            <a href="#contacto" class="cf-pill cf-pill-primary magnetic-pill" id="pill-diag">
-              <span class="cf-heartbeat">⚡</span>
-              <span data-i18n="hero.cta1">Diagnóstico Harmony Gratis</span>
-            </a>
-            <a href="#servicios" class="cf-pill cf-pill-ghost magnetic-pill">
-              <span data-i18n="nav.services">Servicios</span>
-              <span>→</span>
-            </a>
-            <a href="https://wa.me/573001234567" class="cf-pill cf-pill-ghost magnetic-pill" target="_blank" rel="noopener">
-              WhatsApp
-            </a>
-          </div>
-        </div>
-
-        <div class="cf-bottom">
-          <p class="cf-copy">
-            © 2026 Harmony IA &nbsp;·&nbsp;
-            <a href="#" data-i18n="ft.priv">Privacidad</a>
-            &nbsp;·&nbsp;
-            <a href="#" data-i18n="ft.terms">Términos</a>
-            &nbsp;·&nbsp;
-            <span data-i18n="ft.desc" style="opacity:0.6">Automatizamos empresas en LATAM.</span>
-          </p>
-          <div class="cf-socials">
-            <a href="#" class="cf-social" title="LinkedIn">in</a>
-            <a href="#" class="cf-social" title="X">𝕏</a>
-            <a href="#" class="cf-social" title="Instagram">Ig</a>
-            <a href="#" class="cf-social" title="WhatsApp">W</a>
-          </div>
-        </div>
+    </div>
+    <div class="sf-bottom">
+      <p class="sf-copy">© 2026 Harmony IA · <a href="#" data-i18n="ft.priv">Privacidad</a> · <a href="#" data-i18n="ft.terms">Términos</a></p>
+      <div class="sf-socials">
+        <a href="#" class="sf-social" aria-label="LinkedIn">in</a>
+        <a href="#" class="sf-social" aria-label="X">𝕏</a>
+        <a href="#" class="sf-social" aria-label="Instagram">Ig</a>
+        <a href="#" class="sf-social" aria-label="WhatsApp">W</a>
       </div>
-    </footer>
+    </div>
   </div>
-</div>
+</footer>
 
 
 <script>
@@ -1331,8 +1531,28 @@ function setLang(l){
   document.querySelectorAll(`[id^="btn-${l}"]`).forEach(b=>b.classList.add('active'));
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[l][k]!==undefined)el.textContent=T[l][k];});
   document.querySelectorAll('[data-placeholder-i18n]').forEach(el=>{const k=el.getAttribute('data-placeholder-i18n');if(T[l][k])el.placeholder=T[l][k];});
-  document.documentElement.lang=l;
-  document.title=l==='es'?'Harmony IA — AI que paga sola en 90 días':'Harmony IA — AI That Pays for Itself in 90 Days';
+
+  // SEO: update lang, title, description and OG/Twitter meta tags
+  document.documentElement.lang = l === 'es' ? 'es-419' : 'en';
+
+  const titles = {
+    es: 'Harmony IA | Automatización con IA para Empresas en LATAM',
+    en: 'Harmony IA | AI Automation for LATAM Businesses'
+  };
+  const descs = {
+    es: 'Automatizamos empresas en LATAM con IA aplicada: agentes conversacionales, CRM inteligente y flujos autónomos 24/7. ROI garantizado en 90 días o seguimos sin costo adicional.',
+    en: 'We automate LATAM businesses with applied AI: conversational agents, smart CRM, and autonomous workflows 24/7. Guaranteed ROI in 90 days or we keep working at no extra cost.'
+  };
+  const ogLocales = { es: 'es_419', en: 'en_US' };
+
+  document.title = titles[l];
+  const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', val); };
+  setMeta('meta[name="description"]', descs[l]);
+  setMeta('meta[property="og:title"]', titles[l]);
+  setMeta('meta[property="og:description"]', descs[l]);
+  setMeta('meta[property="og:locale"]', ogLocales[l]);
+  setMeta('meta[name="twitter:title"]', titles[l]);
+  setMeta('meta[name="twitter:description"]', descs[l]);
 }
 
 /* Nav scroll */
