@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harmony IA — AI que paga sola en 90 días</title>
+  <meta name="description" content="Automatizamos empresas en LATAM con IA aplicada. No asesoramos — implementamos. Harmony Automate, Agents y CRM." />
+  <meta property="og:title" content="Harmony IA — AI que paga sola en 90 días" />
+  <meta property="og:description" content="Automatizamos empresas en LATAM con IA aplicada. No asesoramos — implementamos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+  <style>
+  /* ═══════════════════════════════════════════════
+     DESIGN TOKENS — Framer System + Harmony IA Brand
+     ═══════════════════════════════════════════════ */
+  :root {
+    --canvas:        #090909;
+    --surface-1:     #141414;
+    --surface-2:     #1c1c1c;
+    --hairline:      #262626;
+    --hairline-soft: #1a1a1a;
+    --ink:           #ffffff;
+    --ink-muted:     #999999;
+    --cyan:    #00D4FF;
+    --violet:  #7C3AED;
+    --emerald: #10B981;
+    --grad-violet:  #6a4cf5;
+    --grad-magenta: #d44df0;
+    --grad-orange:  #ff7a3d;
+    --grad-coral:   #ff5577;
+    --r-xs:   4px; --r-sm: 6px; --r-md: 10px; --r-lg: 15px;
+    --r-xl:   20px; --r-xxl: 30px; --r-pill: 100px; --r-full: 9999px;
+    --sp-xs: 8px; --sp-sm: 12px; --sp-md: 15px; --sp-lg: 20px;
+    --sp-xl: 30px; --sp-xxl: 40px; --sp-sec: 96px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--canvas); color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px; line-height: 1.3; letter-spacing: -0.15px;
+    font-feature-settings: 'cv01','cv05','cv09','cv11','ss03','ss07','dlig';
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--canvas); }
+  ::-webkit-scrollbar-thumb { background: linear-gradient(var(--cyan), var(--violet)); border-radius: 2px; }
+  body::after {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.022;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Typography */
+  .disp-xxl { font-size: clamp(48px,8vw,110px); font-weight:700; line-height:.9; letter-spacing:clamp(-2px,-0.05em,-5.5px); }
+  .disp-xl  { font-size: clamp(34px,5vw,85px);  font-weight:700; line-height:.95; letter-spacing:clamp(-1.5px,-0.05em,-4.25px); }
+  .disp-lg  { font-size: clamp(26px,4vw,62px);  font-weight:700; line-height:1.0; letter-spacing:clamp(-1px,-0.05em,-3.1px); }
+  .disp-md  { font-size: clamp(20px,2.5vw,32px); font-weight:700; line-height:1.13; letter-spacing:-1px; }
+  .body-lg  { font-size:18px; font-weight:400; line-height:1.4; letter-spacing:-.18px; }
+  .body     { font-size:15px; font-weight:400; line-height:1.35; letter-spacing:-.15px; }
+  .body-sm  { font-size:14px; font-weight:500; line-height:1.4; letter-spacing:-.14px; }
+  .caption  { font-size:13px; font-weight:500; line-height:1.2; letter-spacing:-.13px; }
+  .micro    { font-size:12px; font-weight:400; line-height:1.2; letter-spacing:-.12px; }
+
+  .gtext {
+    background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* Buttons */
+  .btn {
+    display:inline-flex; align-items:center; gap:6px; font-family:inherit;
+    font-size:14px; font-weight:500; line-height:1; letter-spacing:-.14px;
+    padding:10px 15px; border-radius:var(--r-pill); border:none; cursor:pointer;
+    transition:opacity .15s, transform .1s; white-space:nowrap; min-height:40px;
+  }
+  .btn:hover { opacity:.88; text-decoration:none; }
+  .btn:active { transform:scale(.97); }
+  .btn-white   { background:var(--ink); color:#000; }
+  .btn-dark    { background:var(--surface-1); color:var(--ink); }
+  .btn-grad    { background:linear-gradient(135deg,var(--cyan),var(--violet)); color:#fff; padding:12px 22px; font-size:15px; font-weight:600; position:relative; overflow:hidden; }
+  .btn-grad::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,var(--violet),var(--cyan)); opacity:0; transition:opacity .35s; }
+  .btn-grad:hover::before { opacity:1; }
+  .btn-grad > span, .btn-grad > svg { position:relative; z-index:1; }
+
+  /* Tag pill */
+  .tag { display:inline-flex; align-items:center; background:rgba(0,212,255,.08); border:1px solid rgba(0,212,255,.18); color:var(--cyan); padding:5px 12px; border-radius:var(--r-full); font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+  .tag--violet  { background:rgba(124,58,237,.09); border-color:rgba(124,58,237,.2); color:#a78bfa; }
+  .tag--emerald { background:rgba(16,185,129,.09); border-color:rgba(16,185,129,.2); color:var(--emerald); }
+
+  /* Section label */
+  .sec-label { display:flex; align-items:center; gap:var(--sp-md); color:var(--ink-muted); font-size:13px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; margin-bottom:var(--sp-xxl); }
+  .sec-label::before { content:''; width:24px; height:1px; background:var(--hairline); }
+
+  /* Layout */
+  .container { max-width:1200px; margin:0 auto; padding:0 var(--sp-xl); }
+  section { padding:var(--sp-sec) 0; }
+
+  /* Nav */
+  .nav { position:fixed; top:0; left:0; right:0; z-index:100; height:56px; background:rgba(9,9,9,.88); backdrop-filter:blur(16px); border-bottom:1px solid var(--hairline-soft); transition:background .3s; }
+  .nav.scrolled { background:rgba(9,9,9,.96); }
+  .nav-inner { max-width:1200px; margin:0 auto; height:100%; padding:0 var(--sp-xl); display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .nav-logo-mark { width:32px; height:32px; border-radius:var(--r-md); background:linear-gradient(135deg,var(--cyan),var(--violet)); display:flex; align-items:center; justify-content:center; transition:transform .2s; }
+  .nav-logo:hover .nav-logo-mark { transform:scale(1.08); }
+  .nav-logo-text { font-size:17px; font-weight:700; color:var(--ink); letter-spacing:-.5px; }
+  .nav-logo-text span { color:var(--cyan); }
+  .nav-links { display:flex; align-items:center; gap:var(--sp-xl); list-style:none; }
+  .nav-links a { color:var(--ink-muted); font-size:14px; font-weight:500; letter-spacing:-.14px; transition:color .15s; text-decoration:none; }
+  .nav-links a:hover { color:var(--ink); }
+  .nav-right { display:flex; align-items:center; gap:var(--sp-sm); }
+  .lang-toggle { display:flex; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:var(--r-full); padding:3px; }
+  .lang-btn { padding:3px 12px; border-radius:var(--r-full); font-size:12px; font-weight:700; letter-spacing:.04em; cursor:pointer; color:rgba(255,255,255,.4); border:none; background:transparent; transition:color .2s; }
+  .lang-btn.active { background:linear-gradient(135deg,var(--cyan),var(--violet)); color:#fff; }
+  .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+  .hamburger span { display:block; width:20px; height:1.5px; background:var(--ink); border-radius:2px; }
+  .mobile-menu { position:fixed; top:56px; left:0; right:0; z-index:99; background:rgba(9,9,9,.97); backdrop-filter:blur(20px); border-bottom:1px solid var(--hairline-soft); padding:var(--sp-xl); display:flex; flex-direction:column; gap:var(--sp-lg); transform:translateY(-110%); opacity:0; pointer-events:none; transition:transform .25s ease, opacity .25s ease; }
+  .mobile-menu.open { transform:translateY(0); opacity:1; pointer-events:all; }
+  .mobile-menu a { color:var(--ink); font-size:17px; font-weight:600; letter-spacing:-.5px; padding:var(--sp-sm) 0; border-bottom:1px solid var(--hairline-soft); text-decoration:none; }
+  .mobile-menu a:hover { color:var(--ink-muted); }
+  .mobile-menu-btns { display:flex; gap:var(--sp-sm); padding-top:var(--sp-md); }
+
+  /* ── Hero – Antigravity ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: var(--sp-sec);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Deep space gradient bg */
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,212,255,.07) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 10% 70%, rgba(124,58,237,.09) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 85% 80%, rgba(212,77,240,.05) 0%, transparent 50%);
+  }
+  /* Subtle grid */
+  .hero-grid-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(0,212,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  /* Orbit rings */
+  .hero-ring {
+    position: absolute;
+    top: 50%; left: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+    border: 1px solid rgba(0,212,255,.06);
+    animation: ring-spin 30s linear infinite;
+    transform-origin: center center;
+  }
+  .hero-ring::after {
+    content: '';
+    position: absolute;
+    top: -4px; left: 30%;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 12px rgba(0,212,255,.8);
+    opacity: .7;
+  }
+  .hero-ring-1 { width: 520px; height: 520px; margin: -260px 0 0 -260px; animation-duration: 28s; }
+  .hero-ring-2 { width: 820px; height: 820px; margin: -410px 0 0 -410px; animation-duration: 45s; animation-direction: reverse; border-color: rgba(124,58,237,.04); }
+  .hero-ring-2::after { background: #7C3AED; box-shadow: 0 0 12px rgba(124,58,237,.8); top: 20%; left: -4px; }
+  .hero-ring-3 { width: 1120px; height: 1120px; margin: -560px 0 0 -560px; animation-duration: 70s; border-color: rgba(255,255,255,.02); }
+  .hero-ring-3::after { display: none; }
+  @keyframes ring-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  /* Floating cards */
+  .float-card {
+    position: absolute;
+    background: rgba(18,18,26,.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    padding: 11px 15px;
+    pointer-events: none;
+    user-select: none;
+    will-change: transform;
+    animation: antigrav-float 7s ease-in-out infinite;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+  /* Entry + float combined */
+  @keyframes antigrav-float {
+    0%   { transform: translate(var(--mx,0px),var(--my,0px)) translateY(0px);   opacity: 0; }
+    8%   { opacity: 1; }
+    50%  { transform: translate(var(--mx,0px),var(--my,0px)) translateY(-14px); opacity: 1; }
+    100% { transform: translate(var(--mx,0px),var(--my,0px)) translateY(0px);   opacity: 1; }
+  }
+  .fc-1  { top: 14%; right: 9%;  animation-delay: 0.3s;  animation-duration: 7s; }
+  .fc-2  { top: 44%; right: 5%;  animation-delay: 0.9s;  animation-duration: 9s; }
+  .fc-3  { bottom: 22%; right: 11%; animation-delay: 1.5s; animation-duration: 8s; }
+  .fc-4  { top: 22%; left: 5%;  animation-delay: 0.6s;  animation-duration: 10s; }
+  .fc-5  { top: 60%; left: 4%;  animation-delay: 1.2s;  animation-duration: 7.5s; }
+  .fc-6  { bottom: 25%; left: 8%; animation-delay: 1.8s; animation-duration: 9.5s; }
+  .fc-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: rgba(255,255,255,.35); margin-bottom: 4px;
+  }
+  .fc-value {
+    font-size: 13px; font-weight: 700; color: #fff; white-space: nowrap;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .fc-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .fc-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 999px; padding: 3px 8px; font-size: 10px; font-weight: 600;
+    color: rgba(255,255,255,.5); margin-top: 5px; white-space: nowrap;
+  }
+  /* Hero text */
+  .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--surface-1); border:1px solid var(--hairline); border-radius:var(--r-pill); padding:6px 14px; margin-bottom:var(--sp-xl); width:fit-content; }
+  .hero-eyebrow .dot { width:6px; height:6px; border-radius:50%; background:var(--emerald); flex-shrink:0; animation:pulse-dot 2.5s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+  .hero-h1 { margin-bottom:var(--sp-xl); max-width:960px; }
+  .hero-sub { color:var(--ink-muted); max-width:520px; margin-bottom:var(--sp-xxl); }
+  .hero-ctas { display:flex; align-items:center; gap:var(--sp-md); flex-wrap:wrap; margin-bottom:var(--sp-sec); }
+  .scarcity { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:var(--r-xl); padding:8px 14px; animation:scarcity-pulse 2.8s ease-in-out infinite; }
+  .scarcity .dot-green { width:7px; height:7px; border-radius:50%; background:var(--emerald); flex-shrink:0; animation:pulse-dot 2s ease-in-out infinite; }
+  @keyframes scarcity-pulse { 0%,100%{opacity:1} 50%{opacity:.75} }
+  .trust-strip { border-top:1px solid var(--hairline-soft); padding-top:var(--sp-xl); }
+  .trust-label { font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.2); margin-bottom:var(--sp-lg); }
+  .trust-logos { display:flex; flex-wrap:wrap; gap:var(--sp-sm); align-items:center; }
+  .trust-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:var(--r-lg); padding:7px 14px; opacity:.5; filter:grayscale(1); transition:opacity .3s, filter .3s; }
+  .trust-badge:hover { opacity:.9; filter:grayscale(0); }
+  .trust-dot { width:10px; height:10px; border-radius:var(--r-sm); flex-shrink:0; }
+  @media (max-width:900px) { .float-card { display: none; } .hero-ring { display: none; } }
+
+  /* Marquee */
+  .marquee-wrap { border-top:1px solid var(--hairline-soft); border-bottom:1px solid var(--hairline-soft); padding:14px 0; overflow:hidden; }
+  .marquee-track { display:inline-flex; gap:var(--sp-xxl); animation:marquee 30s linear infinite; }
+  .marquee-item { color:var(--ink-muted); font-size:13px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; display:inline-flex; align-items:center; gap:var(--sp-xxl); white-space:nowrap; }
+  .marquee-item::after { content:'✦'; font-size:7px; color:var(--hairline); }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* Stats */
+  .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--sp-lg); }
+  .stat-card { background:var(--surface-1); border-radius:var(--r-xl); padding:var(--sp-xl); border:1px solid var(--hairline-soft); text-align:center; }
+  .stat-num { font-size:clamp(36px,4vw,56px); font-weight:800; line-height:1; letter-spacing:-2px; }
+  .stat-label { color:var(--ink-muted); font-size:13px; margin-top:8px; }
+
+  /* Services */
+  .services-intro { display:flex; align-items:flex-end; justify-content:space-between; gap:var(--sp-xl); flex-wrap:wrap; margin-bottom:var(--sp-sec); }
+  .pillars-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-lg); }
+  .pillar { background:var(--surface-1); border-radius:var(--r-xxl); padding:var(--sp-xl); border:1px solid var(--hairline-soft); position:relative; overflow:hidden; transition:border-color .2s, background .2s, transform .2s; }
+  .pillar:hover { border-color:var(--hairline); background:var(--surface-2); transform:translateY(-4px); }
+  .pillar::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--cyan),var(--violet)); transform:scaleX(0); transform-origin:left; transition:transform .4s; }
+  .pillar:hover::before { transform:scaleX(1); }
+  .pillar-icon { width:44px; height:44px; border-radius:var(--r-md); display:flex; align-items:center; justify-content:center; margin-bottom:var(--sp-lg); }
+  .pillar-icon--cyan    { background:rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.15); }
+  .pillar-icon--violet  { background:rgba(124,58,237,.1); border:1px solid rgba(124,58,237,.15); }
+  .pillar-icon--emerald { background:rgba(16,185,129,.1); border:1px solid rgba(16,185,129,.15); }
+  .pillar-title { font-size:17px; font-weight:700; letter-spacing:-.4px; margin-bottom:6px; }
+  .pillar-desc { color:var(--ink-muted); font-size:14px; line-height:1.6; margin-bottom:var(--sp-xl); }
+  .pillar-items { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:var(--sp-xl); }
+  .pillar-items li { display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(255,255,255,.65); }
+  .pillar-items li::before { content:''; width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+  .pillar-items--cyan   li::before { background:var(--cyan); }
+  .pillar-items--violet li::before { background:#a78bfa; }
+  .pillar-items--emerald li::before { background:var(--emerald); }
+  .pillar-link { display:inline-flex; align-items:center; gap:4px; font-size:13px; font-weight:600; transition:gap .2s; text-decoration:none; }
+  .pillar-link--cyan    { color:var(--cyan); }
+  .pillar-link--violet  { color:#a78bfa; }
+  .pillar-link--emerald { color:var(--emerald); }
+  .pillar-link:hover { gap:10px; text-decoration:none; }
+
+  /* Diff band */
+  .diff-band { background:var(--surface-1); border-top:1px solid var(--hairline-soft); border-bottom:1px solid var(--hairline-soft); padding:var(--sp-sec) 0; text-align:center; position:relative; overflow:hidden; }
+  .diff-band::before { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg, rgba(0,212,255,.03), rgba(124,58,237,.04)); }
+  .diff-text { font-size:clamp(20px,3vw,36px); font-weight:700; line-height:1.35; letter-spacing:-.5px; color:rgba(255,255,255,.85); max-width:860px; margin:0 auto; position:relative; }
+
+  /* Case studies */
+  .case-main { background:var(--surface-1); border-radius:var(--r-xxl); overflow:hidden; border:1px solid var(--hairline-soft); display:grid; grid-template-columns:1fr 1fr; margin-bottom:var(--sp-lg); }
+  .case-content { padding:56px 48px; }
+  .case-metrics { display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-sm); margin:var(--sp-xl) 0; }
+  .metric { background:rgba(255,255,255,.04); border:1px solid var(--hairline-soft); border-radius:var(--r-lg); padding:var(--sp-lg); }
+  .metric-num { font-size:26px; font-weight:800; letter-spacing:-1px; }
+  .metric-label { font-size:12px; color:var(--ink-muted); margin-top:4px; line-height:1.4; }
+  .case-visual { background:linear-gradient(135deg, rgba(0,212,255,.05), rgba(124,58,237,.08)); display:flex; align-items:center; justify-content:center; padding:var(--sp-xl); min-height:360px; }
+  .chart { background:rgba(255,255,255,.03); border:1px solid var(--hairline); border-radius:var(--r-xl); padding:var(--sp-xl); width:100%; max-width:280px; }
+  .chart-lbl { font-size:11px; color:var(--ink-muted); letter-spacing:.1em; text-transform:uppercase; margin-bottom:var(--sp-lg); }
+  .chart-bars { display:flex; align-items:flex-end; gap:var(--sp-lg); height:120px; }
+  .chart-col { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .bar { width:100%; border-radius:var(--r-sm) var(--r-sm) 0 0; }
+  .bar-before { background:rgba(255,255,255,.1); height:100%; }
+  .bar-after  { background:linear-gradient(to top,var(--cyan),var(--violet)); height:4%; }
+  .chart-val  { font-size:12px; font-weight:700; }
+  .chart-name { font-size:11px; color:var(--ink-muted); }
+  .mini-cases { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-lg); }
+  .mini--violet  { background:linear-gradient(135deg, var(--grad-violet) 0%, #3a2ab8 100%); border-radius:var(--r-xxl); padding:var(--sp-xl); }
+  .mini--magenta { background:linear-gradient(135deg, var(--grad-magenta) 0%, #8b1fc4 100%); border-radius:var(--r-xxl); padding:var(--sp-xl); }
+  .mini--orange  { background:linear-gradient(135deg, var(--grad-orange) 0%, #c44a00 100%); border-radius:var(--r-xxl); padding:var(--sp-xl); }
+  .mini-tag { font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:var(--sp-lg); }
+  .mini-num { font-size:clamp(36px,4vw,52px); font-weight:800; letter-spacing:-2px; color:#fff; line-height:1; margin-bottom:6px; }
+  .mini-desc { font-size:14px; color:rgba(255,255,255,.75); line-height:1.5; }
+
+  /* Industries */
+  .industries-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-lg); }
+  .industry { background:var(--surface-1); border-radius:var(--r-xxl); overflow:hidden; border:1px solid var(--hairline-soft); transition:border-color .2s, transform .2s; }
+  .industry:hover { border-color:var(--hairline); transform:translateY(-4px); }
+  .industry-head { padding:var(--sp-xl); display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--hairline-soft); }
+  .industry-title { font-size:17px; font-weight:700; letter-spacing:-.4px; }
+  .industry-icon { width:40px; height:40px; border-radius:var(--r-md); display:flex; align-items:center; justify-content:center; font-size:18px; }
+  .industry-body { padding:var(--sp-xl); }
+  .industry-desc { color:var(--ink-muted); font-size:14px; line-height:1.6; margin-bottom:var(--sp-lg); }
+  .i-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .i-tag { background:var(--surface-2); border:1px solid var(--hairline); border-radius:var(--r-full); padding:4px 10px; font-size:12px; color:var(--ink-muted); }
+
+  /* Process */
+  .process-layout { display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-sec); align-items:center; }
+  .process-steps { display:flex; flex-direction:column; }
+  .process-step { display:flex; gap:var(--sp-xl); padding:var(--sp-xl) 0; border-bottom:1px solid var(--hairline-soft); align-items:flex-start; }
+  .process-step:last-child { border-bottom:none; }
+  .step-n { font-size:12px; font-weight:600; color:var(--ink-muted); letter-spacing:.08em; width:28px; flex-shrink:0; padding-top:2px; }
+  .step-title { font-size:16px; font-weight:700; letter-spacing:-.4px; margin-bottom:6px; }
+  .step-desc { color:var(--ink-muted); font-size:14px; line-height:1.6; }
+  .process-visual { background:var(--surface-1); border-radius:var(--r-xxl); aspect-ratio:1; border:1px solid var(--hairline-soft); position:relative; overflow:hidden; }
+  .pv-glow { position:absolute; border-radius:50%; pointer-events:none; }
+  .pv-g1 { width:200px; height:200px; background:radial-gradient(circle, rgba(0,212,255,.15),transparent 70%); top:-40px; right:-40px; }
+  .pv-g2 { width:180px; height:180px; background:radial-gradient(circle, rgba(124,58,237,.12),transparent 70%); bottom:10px; left:10px; }
+  .pv-grid { position:absolute; inset:var(--sp-xl); display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(4,1fr); gap:8px; }
+  .pv-tile { border-radius:var(--r-sm); background:var(--surface-2); }
+  .pv-tile:nth-child(1)  { background:rgba(0,212,255,.25); }
+  .pv-tile:nth-child(6)  { background:rgba(124,58,237,.2); }
+  .pv-tile:nth-child(11) { background:rgba(255,122,61,.15); }
+  .pv-tile:nth-child(16) { background:rgba(16,185,129,.15); }
+  .pv-badge { position:absolute; bottom:var(--sp-xl); left:var(--sp-xl); right:var(--sp-xl); background:rgba(255,255,255,.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.08); border-radius:var(--r-xl); padding:var(--sp-md) var(--sp-lg); display:flex; align-items:center; gap:var(--sp-sm); }
+  .pv-badge-icon { width:32px; height:32px; border-radius:var(--r-md); background:linear-gradient(135deg,var(--cyan),var(--violet)); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .pv-badge-t { font-size:13px; font-weight:600; }
+  .pv-badge-s { font-size:12px; color:var(--ink-muted); }
+
+  /* Testimonials */
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-lg); }
+  .testi { background:var(--surface-1); border-radius:var(--r-xl); padding:var(--sp-xl); border:1px solid var(--hairline-soft); display:flex; flex-direction:column; gap:var(--sp-lg); }
+  .testi:nth-child(2) { background:var(--surface-2); border-color:var(--hairline); }
+  .testi-q { font-size:15px; line-height:1.65; color:var(--ink); }
+  .testi-author { display:flex; align-items:center; gap:var(--sp-sm); margin-top:auto; }
+  .testi-av { width:36px; height:36px; border-radius:var(--r-full); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+  .testi-name { font-size:13px; font-weight:600; letter-spacing:-.13px; }
+  .testi-role { font-size:12px; color:var(--ink-muted); }
+
+  /* Pricing */
+  .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-lg); }
+  .plan { background:var(--surface-1); border-radius:var(--r-xxl); padding:var(--sp-xl); border:1px solid var(--hairline-soft); display:flex; flex-direction:column; gap:var(--sp-lg); transition:border-color .2s; }
+  .plan:hover { border-color:var(--hairline); }
+  .plan--feat { background:var(--surface-2); border-color:rgba(0,212,255,.25); box-shadow:0 0 0 1px rgba(0,212,255,.1), 0 24px 60px rgba(0,212,255,.06); position:relative; }
+  .plan-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,var(--cyan),var(--violet)); color:#fff; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 14px; border-radius:var(--r-full); }
+  .plan-name { font-size:18px; font-weight:700; letter-spacing:-.4px; }
+  .plan-sub { font-size:13px; color:var(--ink-muted); }
+  .plan-price { display:flex; align-items:baseline; gap:4px; }
+  .plan-from { font-size:13px; color:var(--ink-muted); }
+  .plan-num { font-size:clamp(32px,3vw,44px); font-weight:800; letter-spacing:-2px; }
+  .plan-period { font-size:13px; color:var(--ink-muted); }
+  .plan-divider { height:1px; background:var(--hairline-soft); }
+  .plan-features { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .plan-features li { display:flex; align-items:flex-start; gap:8px; font-size:14px; color:rgba(255,255,255,.75); }
+  .plan-check { color:var(--emerald); flex-shrink:0; font-size:14px; margin-top:1px; }
+  .plan-cta { margin-top:auto; }
+  .guarantee { margin-top:var(--sp-xl); background:rgba(16,185,129,.06); border:1px solid rgba(16,185,129,.15); border-radius:var(--r-xl); padding:var(--sp-xl); display:flex; align-items:flex-start; gap:var(--sp-md); }
+  .guarantee-icon { font-size:22px; flex-shrink:0; }
+  .guarantee-text { font-size:14px; line-height:1.6; color:var(--ink-muted); }
+  .guarantee-text strong { color:var(--ink); }
+
+  /* Contact */
+  .contact-box { background:var(--surface-1); border-radius:var(--r-xxl); padding:var(--sp-sec); border:1px solid var(--hairline-soft); position:relative; overflow:hidden; }
+  .contact-glow { position:absolute; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle, rgba(0,212,255,.07) 0%, transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .contact-inner { position:relative; display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-sec); align-items:start; }
+  .contact-form { display:flex; flex-direction:column; gap:var(--sp-md); }
+  .form-group { display:flex; flex-direction:column; gap:6px; }
+  .form-label { font-size:12px; font-weight:600; color:var(--ink-muted); letter-spacing:.04em; }
+  .form-input, .form-select { background:var(--surface-2); border:1px solid var(--hairline); color:var(--ink); font-family:inherit; font-size:14px; padding:10px 14px; border-radius:var(--r-md); transition:border-color .2s, box-shadow .2s; width:100%; }
+  .form-input:focus, .form-select:focus { outline:none; border-color:rgba(0,212,255,.45); box-shadow:0 0 0 3px rgba(0,212,255,.08); }
+  .form-input::placeholder { color:rgba(255,255,255,.25); }
+  .form-select option { background:var(--surface-2); color:var(--ink); }
+  .form-privacy { font-size:12px; color:var(--ink-muted); margin-top:4px; }
+  .cta-scarcity { display:flex; align-items:center; gap:8px; margin-bottom:var(--sp-xl); }
+  .cta-dot { width:8px; height:8px; border-radius:50%; background:var(--emerald); animation:pulse-dot 2s ease-in-out infinite; }
+
+  /* Footer */
+  footer { border-top:1px solid var(--hairline-soft); padding:64px var(--sp-xl); }
+  .footer-inner { max-width:1200px; margin:0 auto; }
+  .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:var(--sp-xxl); padding-bottom:var(--sp-xxl); border-bottom:1px solid var(--hairline-soft); }
+  .footer-brand { display:flex; flex-direction:column; gap:var(--sp-lg); }
+  .footer-logo { display:flex; align-items:center; gap:10px; }
+  .footer-logo-mark { width:30px; height:30px; border-radius:var(--r-sm); background:linear-gradient(135deg,var(--cyan),var(--violet)); display:flex; align-items:center; justify-content:center; }
+  .footer-logo-text { font-size:17px; font-weight:700; letter-spacing:-.5px; }
+  .footer-tagline { font-size:13px; color:var(--ink-muted); line-height:1.6; max-width:240px; }
+  .footer-col h4 { font-size:13px; font-weight:600; margin-bottom:var(--sp-lg); }
+  .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:var(--sp-sm); }
+  .footer-col a { color:var(--ink-muted); font-size:13px; transition:color .15s; text-decoration:none; }
+  .footer-col a:hover { color:var(--ink); }
+  .footer-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:var(--sp-xxl); gap:var(--sp-xl); flex-wrap:wrap; }
+  .footer-copy { font-size:12px; color:var(--ink-muted); }
+  .footer-socials { display:flex; gap:var(--sp-sm); }
+  .footer-social { width:32px; height:32px; border-radius:var(--r-full); background:var(--surface-1); border:1px solid var(--hairline-soft); display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-size:12px; font-weight:700; transition:background .15s, color .15s; text-decoration:none; }
+  .footer-social:hover { background:var(--surface-2); color:var(--ink); text-decoration:none; }
+
+  /* Scroll reveal */
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .65s ease, transform .65s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* Responsive */
+  @media (max-width:1024px) {
+    .stats-grid { grid-template-columns:repeat(2,1fr); }
+    .pillars-grid { grid-template-columns:1fr; }
+    .case-main { grid-template-columns:1fr; }
+    .case-visual { display:none; }
+    .process-layout { grid-template-columns:1fr; }
+    .process-visual { display:none; }
+    .contact-inner { grid-template-columns:1fr; }
+  }
+  @media (max-width:800px) {
+    :root { --sp-sec:64px; }
+    .container { padding:0 var(--sp-lg); }
+    .nav-links { display:none; }
+    .hamburger { display:flex; }
+    .nav-right .btn { display:none; }
+    .industries-grid { grid-template-columns:1fr; }
+    .testi-grid { grid-template-columns:1fr; }
+    .mini-cases { grid-template-columns:1fr; }
+    .pricing-grid { grid-template-columns:1fr; }
+    .footer-top { grid-template-columns:1fr 1fr; }
+    .services-intro { flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width:500px) {
+    .stats-grid { grid-template-columns:1fr 1fr; }
+    .footer-top { grid-template-columns:1fr; }
+  }
+
+  /* ═══ CINEMATIC FOOTER ═══ */
+  .footer-curtain-wrap {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .footer-curtain-inner {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    overflow: hidden;
+  }
+  .cinematic-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    background: #03030a;
+  }
+  /* Grid bg */
+  .cf-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  /* Aurora glow */
+  .cf-aurora {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .cf-aurora::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: 20%;
+    width: 60%;
+    height: 70%;
+    background: radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 65%);
+    filter: blur(60px);
+    animation: aurora-shift 8s ease-in-out infinite alternate;
+  }
+  .cf-aurora::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 40%;
+    height: 50%;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.12) 0%, transparent 65%);
+    filter: blur(80px);
+    animation: aurora-shift 10s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes aurora-shift {
+    0%   { transform: translate(0,0) scale(1); }
+    100% { transform: translate(40px,20px) scale(1.15); }
+  }
+  /* Giant background text */
+  .cf-bg-text {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(6rem, 18vw, 18rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(124,58,237,0.06));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    pointer-events: none;
+    user-select: none;
+    will-change: transform;
+  }
+  /* Footer content */
+  .cf-content {
+    position: relative;
+    z-index: 10;
+    padding: 0 clamp(1.5rem, 6vw, 6rem) clamp(2rem, 4vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .cf-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cf-heading {
+    font-size: clamp(2.2rem, 6vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #fff;
+    max-width: 700px;
+    will-change: transform, opacity;
+  }
+  .cf-heading span { background: linear-gradient(135deg, #00D4FF, #7C3AED); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  /* Scrolling marquee */
+  .cf-marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 10px 0;
+  }
+  .cf-marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee-scroll 18s linear infinite;
+    white-space: nowrap;
+  }
+  .cf-marquee-track span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+  .cf-marquee-track span.accent { color: rgba(0,212,255,0.6); }
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  /* Pills row */
+  .cf-pills {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    will-change: transform, opacity;
+  }
+  .cf-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    border: none;
+    text-decoration: none;
+    transform-style: preserve-3d;
+  }
+  .cf-pill-primary {
+    background: linear-gradient(135deg, #00D4FF, #7C3AED);
+    color: #fff;
+  }
+  .cf-pill-primary:hover { box-shadow: 0 12px 40px rgba(0,212,255,0.4); }
+  .cf-pill-ghost {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.75);
+  }
+  .cf-pill-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(0,212,255,0.3); }
+  /* Bottom bar */
+  .cf-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1.5rem;
+  }
+  .cf-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+  .cf-copy a { color: rgba(255,255,255,0.3); text-decoration: none; }
+  .cf-copy a:hover { color: #00D4FF; }
+  .cf-socials { display: flex; gap: 1rem; }
+  .cf-social {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.45);
+    text-decoration: none; transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .cf-social:hover { border-color: rgba(0,212,255,0.4); color: #00D4FF; transform: translateY(-2px); }
+  .cf-heartbeat { animation: heartbeat 2s ease-in-out infinite; display: inline-block; }
+  @keyframes heartbeat { 0%,100% { transform:scale(1); } 50% { transform:scale(1.22); } }
+  @media (max-width:700px) {
+    .cf-top { flex-direction:column; align-items:flex-start; }
+    .cf-heading { font-size: clamp(2rem, 10vw, 3rem); }
+    .cf-bg-text { font-size: clamp(4rem, 24vw, 8rem); }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#inicio">
+      <div class="nav-logo-mark">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+          <path d="M9 1.5L16 5.25v7.5L9 16.5l-7-3.75V5.25L9 1.5Z" stroke="white" stroke-width="1.4"/>
+          <circle cx="9" cy="9" r="2.5" fill="white"/>
+        </svg>
+      </div>
+      <span class="nav-logo-text">Harmony <span>IA</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="#industrias" data-i18n="nav.industries">Industrias</a></li>
+      <li><a href="#casos" data-i18n="nav.cases">Casos de Éxito</a></li>
+      <li><a href="#proceso" data-i18n="nav.process">Proceso</a></li>
+      <li><a href="#precios" data-i18n="nav.pricing">Precios</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('es')" id="btn-es">ES</button>
+        <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+      </div>
+      <a href="#contacto" class="btn btn-white" data-i18n="nav.cta">Diagnóstico Gratis</a>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicios" class="nav-ml" data-i18n="nav.services">Servicios</a>
+  <a href="#industrias" class="nav-ml" data-i18n="nav.industries">Industrias</a>
+  <a href="#casos" class="nav-ml" data-i18n="nav.cases">Casos de Éxito</a>
+  <a href="#proceso" class="nav-ml" data-i18n="nav.process">Proceso</a>
+  <a href="#precios" class="nav-ml" data-i18n="nav.pricing">Precios</a>
+  <div class="mobile-menu-btns">
+    <a href="#contacto" class="btn btn-grad" data-i18n="nav.cta">Diagnóstico Gratis</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('es')" id="btn-es-m">ES</button>
+      <button class="lang-btn" onclick="setLang('en')" id="btn-en-m">EN</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ HERO — Antigravity ═══ -->
+<section class="hero" id="inicio">
+  <!-- Deep space bg -->
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+
+  <!-- Orbit rings (positioned at hero center) -->
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <div class="hero-ring hero-ring-3"></div>
+
+  <!-- ── Floating antigravity cards ── -->
+  <!-- Card 1: WhatsApp lead notification (top-right) -->
+  <div class="float-card fc-1" data-speed="0.025">
+    <div class="fc-label">Nuevo lead · WhatsApp</div>
+    <div class="fc-value">
+      <span class="fc-dot" style="background:#25D366;box-shadow:0 0 8px rgba(37,211,102,.6)"></span>
+      María García calificada ✓
+    </div>
+    <div class="fc-chip">Harmony Sales Agent · Ahora</div>
+  </div>
+
+  <!-- Card 2: ROI metric (right-mid) -->
+  <div class="float-card fc-2" data-speed="-0.03">
+    <div class="fc-label">ROI acumulado</div>
+    <div class="fc-value" style="font-size:20px;color:var(--cyan);">+500%</div>
+    <div class="fc-chip" style="color:rgba(0,212,255,.7);border-color:rgba(0,212,255,.15);">en 90 días</div>
+  </div>
+
+  <!-- Card 3: n8n workflow (bottom-right) -->
+  <div class="float-card fc-3" data-speed="0.02">
+    <div class="fc-label">Sistema activo</div>
+    <div class="fc-value">
+      <span class="fc-dot" style="background:#ea4b71;box-shadow:0 0 8px rgba(234,75,113,.5)"></span>
+      n8n · 14 flujos live
+    </div>
+    <div class="fc-chip">Harmony Automate</div>
+  </div>
+
+  <!-- Card 4: Response time (top-left) -->
+  <div class="float-card fc-4" data-speed="-0.02">
+    <div class="fc-label">Tiempo de respuesta</div>
+    <div class="fc-value" style="gap:10px;">
+      <span style="color:rgba(255,100,100,.7);text-decoration:line-through;font-weight:500;font-size:12px;">4 h</span>
+      <span style="color:#4ade80;font-size:18px;">90 s</span>
+    </div>
+    <div class="fc-chip" style="color:rgba(74,222,128,.6);border-color:rgba(74,222,128,.15);">↓ 97%</div>
+  </div>
+
+  <!-- Card 5: AI agent status (left-mid) -->
+  <div class="float-card fc-5" data-speed="0.035">
+    <div class="fc-label">Agente IA</div>
+    <div class="fc-value">
+      <span class="fc-dot" style="background:#4ade80;animation:pulse-dot 2s ease-in-out infinite;box-shadow:0 0 8px rgba(74,222,128,.5)"></span>
+      Online · 24/7
+    </div>
+    <div class="fc-chip">Harmony Agents</div>
+  </div>
+
+  <!-- Card 6: Empresas count (bottom-left) -->
+  <div class="float-card fc-6" data-speed="-0.025">
+    <div class="fc-label">Empresas LATAM</div>
+    <div class="fc-value" style="font-size:20px;color:#a78bfa;">120+</div>
+    <div class="fc-chip" style="color:rgba(167,139,250,.6);border-color:rgba(167,139,250,.15);">automatizadas</div>
+  </div>
+
+  <!-- ── Main hero content ── -->
+  <div class="container" style="position:relative;z-index:10;">
+    <div class="hero-eyebrow caption">
+      <span class="dot"></span>
+      <span data-i18n="hero.tag">No asesoramos. Implementamos.</span>
+    </div>
+    <h1 class="disp-xxl hero-h1">
+      <span data-i18n="hero.line1">Deja de hacer manualmente</span><br />
+      <span class="gtext" data-i18n="hero.line2">lo que ya hace la IA.</span>
+    </h1>
+    <p class="body-lg hero-sub" data-i18n="hero.sub">
+      Implementamos flujos autónomos, agentes conversacionales y CRM inteligente en tu empresa — en 30 días, con ROI medible desde el primer mes.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn btn-grad">
+        <span data-i18n="hero.cta1">Diagnóstico Harmony Gratis</span>
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="white" stroke-width="1.8"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12"/></svg>
+      </a>
+      <div class="scarcity">
+        <span class="dot-green"></span>
+        <span class="body-sm" data-i18n="hero.scarcity">Solo 5 cupos este mes</span>
+      </div>
+    </div>
+    <div class="trust-strip">
+      <p class="trust-label" data-i18n="hero.trusted">Alianzas Tecnológicas</p>
+      <div class="trust-logos">
+        <div class="trust-badge"><div class="trust-dot" style="background:#fff;opacity:.7;"></div><span class="caption" style="color:rgba(255,255,255,.6);">OpenAI Partner</span></div>
+        <div class="trust-badge"><div class="trust-dot" style="background:#ff7a00;"></div><span class="caption" style="color:rgba(255,255,255,.6);">Anthropic Partner</span></div>
+        <div class="trust-badge"><div class="trust-dot" style="background:#4ade80;"></div><span class="caption" style="color:rgba(255,255,255,.6);">Google Cloud AI</span></div>
+        <div class="trust-badge"><div class="trust-dot" style="background:var(--cyan);"></div><span class="caption" style="color:rgba(255,255,255,.6);">Clutch Top-Rated</span></div>
+        <div class="trust-badge"><div class="trust-dot" style="background:#60a5fa;"></div><span class="caption" style="color:rgba(255,255,255,.6);">ISO 27001</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Harmony Automate</span>
+    <span class="marquee-item">Harmony Agents</span>
+    <span class="marquee-item">Harmony CRM</span>
+    <span class="marquee-item">n8n · GoHighLevel</span>
+    <span class="marquee-item">WhatsApp AI</span>
+    <span class="marquee-item">Voice Closer</span>
+    <span class="marquee-item">Lead Engine</span>
+    <span class="marquee-item">Pipeline OS</span>
+    <span class="marquee-item">Harmony Automate</span>
+    <span class="marquee-item">Harmony Agents</span>
+    <span class="marquee-item">Harmony CRM</span>
+    <span class="marquee-item">n8n · GoHighLevel</span>
+    <span class="marquee-item">WhatsApp AI</span>
+    <span class="marquee-item">Voice Closer</span>
+    <span class="marquee-item">Lead Engine</span>
+    <span class="marquee-item">Pipeline OS</span>
+  </div>
+</div>
+
+
+<!-- ═══ STATS — P4: Quantified proof ═══ -->
+<section style="padding:var(--sp-sec) 0;">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card reveal"><div class="stat-num gtext" data-countup="90" data-suffix="%">0%</div><div class="stat-label" data-i18n="stats.s1">Reducción en tareas manuales</div></div>
+      <div class="stat-card reveal"><div class="stat-num gtext" data-countup="500" data-suffix="%+">0</div><div class="stat-label" data-i18n="stats.s2">ROI promedio en 90 días</div></div>
+      <div class="stat-card reveal"><div class="stat-num gtext" data-countup="48" data-suffix="h">0h</div><div class="stat-label" data-i18n="stats.s3">Tiempo promedio de entrega</div></div>
+      <div class="stat-card reveal"><div class="stat-num gtext" data-countup="120" data-suffix="+">0</div><div class="stat-label" data-i18n="stats.s4">Empresas automatizadas</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ SERVICES — P2: 3 pillars, 9 named offerings ═══ -->
+<section id="servicios">
+  <div class="container">
+    <div class="services-intro">
+      <div>
+        <div class="sec-label reveal" data-i18n="srv.tag">Nuestros Servicios</div>
+        <h2 class="disp-lg reveal" data-i18n="srv.title">Tres pilares.<br />Un ecosistema.</h2>
+      </div>
+      <p class="body-lg reveal" style="color:var(--ink-muted);max-width:380px;" data-i18n="srv.sub">No vendemos licencias ni herramientas. Vendemos resultados medibles con sistemas que operamos a diario.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar reveal">
+        <div class="pillar-icon pillar-icon--cyan">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.6" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="tag">Harmony Automate</div>
+        <div class="pillar-title" data-i18n="a.title">Automatización Inteligente</div>
+        <p class="pillar-desc" data-i18n="a.desc">Convertimos procesos repetitivos en flujos autónomos que trabajan 24/7. Tu equipo se enfoca en decisiones; nuestros sistemas hacen el resto.</p>
+        <ul class="pillar-items pillar-items--cyan">
+          <li><span data-i18n="a.f1">Harmony Lead Engine</span></li>
+          <li><span data-i18n="a.f2">Harmony Ops Workflows</span></li>
+          <li><span data-i18n="a.f3">Harmony AI Copilot</span></li>
+        </ul>
+        <a href="#contacto" class="pillar-link pillar-link--cyan"><span data-i18n="srv.more">Ver más</span> →</a>
+      </div>
+      <div class="pillar reveal" style="transition-delay:.08s">
+        <div class="pillar-icon pillar-icon--violet">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/><path d="M19 9l1.5-1.5M20.5 12.5H22M19 16l1.5 1.5"/></svg>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <div class="tag tag--violet">Harmony Agents</div>
+          <div class="tag" style="background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.2);color:#a78bfa;" data-i18n="popular">Popular</div>
+        </div>
+        <div class="pillar-title" data-i18n="b.title">Agentes IA Conversacionales</div>
+        <p class="pillar-desc" data-i18n="b.desc">Agentes de IA que responden, califican y cierran clientes — en texto y voz — en cualquier canal. Disponibles 24/7, sin fatiga, sin errores.</p>
+        <ul class="pillar-items pillar-items--violet">
+          <li><span data-i18n="b.f1">Harmony Sales Agent</span></li>
+          <li><span data-i18n="b.f2">Harmony Voice Closer</span></li>
+          <li><span data-i18n="b.f3">Harmony Support Agent</span></li>
+        </ul>
+        <a href="#contacto" class="pillar-link pillar-link--violet"><span data-i18n="srv.more">Ver más</span> →</a>
+      </div>
+      <div class="pillar reveal" style="transition-delay:.16s">
+        <div class="pillar-icon pillar-icon--emerald">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--emerald)" stroke-width="1.6" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="13" y2="12"/></svg>
+        </div>
+        <div class="tag tag--emerald">Harmony CRM</div>
+        <div class="pillar-title" data-i18n="c.title">CRM Inteligente a Medida</div>
+        <p class="pillar-desc" data-i18n="c.desc">Implementamos y operamos tu CRM con IA integrada — trazabilidad completa de cada lead, cliente y oportunidad, sin fricción para tu equipo.</p>
+        <ul class="pillar-items pillar-items--emerald">
+          <li><span data-i18n="c.f1">Harmony Pipeline OS</span></li>
+          <li><span data-i18n="c.f2">Harmony Multi-Location</span></li>
+          <li><span data-i18n="c.f3">Harmony Agency Suite</span></li>
+        </ul>
+        <a href="#contacto" class="pillar-link pillar-link--emerald"><span data-i18n="srv.more">Ver más</span> →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ DIFFERENTIATION — P6: Contrast positioning ═══ -->
+<div class="diff-band">
+  <div class="container">
+    <p class="diff-text reveal">
+      <span data-i18n="diff.a">"No somos consultores que asesoran desde presentaciones.</span><br />
+      <span data-i18n="diff.b"> Implementamos, integramos y operamos — </span>
+      <span class="gtext" data-i18n="diff.c">nosotros, en tu negocio, desde el día 1."</span>
+    </p>
+  </div>
+</div>
+
+
+<!-- ═══ CASE STUDIES — P4: Quantified proof with hard metrics ═══ -->
+<section id="casos">
+  <div class="container">
+    <div class="sec-label reveal" data-i18n="cs.tag">Casos de Éxito</div>
+    <h2 class="disp-lg reveal" style="margin-bottom:var(--sp-sec);" data-i18n="cs.title">Números que no mienten.</h2>
+
+    <div class="case-main reveal">
+      <div class="case-content">
+        <div class="tag" style="margin-bottom:var(--sp-lg);" data-i18n="cs1.tag">E-commerce · Harmony Automate</div>
+        <h3 class="disp-md" style="margin-bottom:var(--sp-lg);" data-i18n="cs1.title">De 4 horas a 90 segundos: tiempo de respuesta al cliente</h3>
+        <p class="body" style="color:var(--ink-muted);margin-bottom:var(--sp-xl);" data-i18n="cs1.desc">Un e-commerce con 3,000+ pedidos mensuales perdía ventas por respuestas lentas. Implementamos Harmony Agents + Harmony CRM. En 30 días, el tiempo de respuesta cayó un 97%.</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="metric-num gtext">97%</div><div class="metric-label" data-i18n="cs1.m1">Reducción tiempo de respuesta</div></div>
+          <div class="metric"><div class="metric-num gtext">$42K</div><div class="metric-label" data-i18n="cs1.m2">USD ahorrados en 90 días</div></div>
+          <div class="metric"><div class="metric-num gtext">23h</div><div class="metric-label" data-i18n="cs1.m3">Horas semanales recuperadas</div></div>
+          <div class="metric"><div class="metric-num gtext">600%</div><div class="metric-label" data-i18n="cs1.m4">ROI en el primer trimestre</div></div>
+        </div>
+        <a href="#contacto" class="btn btn-grad">
+          <span data-i18n="cs.cta">Ver caso completo</span>
+          <svg width="12" height="12" viewBox="0 0 13 13" fill="none" stroke="white" stroke-width="1.8"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12"/></svg>
+        </a>
+      </div>
+      <div class="case-visual">
+        <div class="chart">
+          <div class="chart-lbl" data-i18n="cs1.chart">Tiempo de respuesta promedio</div>
+          <div class="chart-bars">
+            <div class="chart-col">
+              <div class="bar bar-before"></div>
+              <div class="chart-val" style="color:var(--ink-muted);">4h</div>
+              <div class="chart-name" data-i18n="cs1.before">Antes</div>
+            </div>
+            <div class="chart-col">
+              <div class="bar bar-after"></div>
+              <div class="chart-val" style="color:var(--cyan);">90s</div>
+              <div class="chart-name" style="color:var(--cyan);" data-i18n="cs1.after">Harmony</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gradient spotlight mini-cases — Framer signature cards -->
+    <div class="mini-cases">
+      <div class="mini--violet reveal">
+        <div class="mini-tag" data-i18n="cs2.tag">Clínica · Harmony Agents</div>
+        <div class="mini-num">+340%</div>
+        <div class="mini-desc" data-i18n="cs2.desc">Aumento en leads calificados para una red de clínicas en Colombia tras implementar Harmony Sales Agent.</div>
+      </div>
+      <div class="mini--magenta reveal" style="transition-delay:.08s">
+        <div class="mini-tag" data-i18n="cs3.tag">Legal · Harmony CRM</div>
+        <div class="mini-num">−58%</div>
+        <div class="mini-desc" data-i18n="cs3.desc">Reducción en costos operativos para una firma legal en México con Harmony Pipeline OS implementado.</div>
+      </div>
+      <div class="mini--orange reveal" style="transition-delay:.16s">
+        <div class="mini-tag" data-i18n="cs4.tag">Agencia · Harmony Automate</div>
+        <div class="mini-num">$2.4M</div>
+        <div class="mini-desc" data-i18n="cs4.desc">En pipeline generado en 6 meses para una agencia de marketing con Harmony Lead Engine activo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ INDUSTRIES — P7: Named verticals ═══ -->
+<section id="industrias">
+  <div class="container">
+    <div class="sec-label reveal" data-i18n="ind.tag">Industrias</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:var(--sp-xl);flex-wrap:wrap;margin-bottom:var(--sp-sec);">
+      <h2 class="disp-lg reveal" data-i18n="ind.title">Construido para<br />tu sector.</h2>
+      <p class="body-lg reveal" style="color:var(--ink-muted);max-width:340px;" data-i18n="ind.sub">No ofrecemos soluciones genéricas. Cada implementación parte del contexto real de tu industria.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry reveal">
+        <div class="industry-head"><div class="industry-title" data-i18n="i1.title">Clínicas y Consultorios</div><div class="industry-icon" style="background:rgba(212,77,240,.1);">🏥</div></div>
+        <div class="industry-body">
+          <p class="industry-desc" data-i18n="i1.desc">Agendamiento automático, seguimiento de pacientes, recordatorios inteligentes y gestión de pipeline médico.</p>
+          <div class="i-tags"><span class="i-tag" data-i18n="i1.t1">Agenda IA</span><span class="i-tag" data-i18n="i1.t2">Recordatorios</span><span class="i-tag" data-i18n="i1.t3">CRM Médico</span></div>
+        </div>
+      </div>
+      <div class="industry reveal" style="transition-delay:.08s">
+        <div class="industry-head"><div class="industry-title" data-i18n="i2.title">E-commerce LATAM</div><div class="industry-icon" style="background:rgba(255,122,61,.1);">🛒</div></div>
+        <div class="industry-body">
+          <p class="industry-desc" data-i18n="i2.desc">Atención 24/7, recuperación de carritos, automatización de pedidos y retención inteligente de compradores.</p>
+          <div class="i-tags"><span class="i-tag" data-i18n="i2.t1">Atención 24/7</span><span class="i-tag" data-i18n="i2.t2">Recuperación</span><span class="i-tag" data-i18n="i2.t3">Retención</span></div>
+        </div>
+      </div>
+      <div class="industry reveal" style="transition-delay:.16s">
+        <div class="industry-head"><div class="industry-title" data-i18n="i3.title">Firmas Legales</div><div class="industry-icon" style="background:rgba(106,76,245,.1);">⚖️</div></div>
+        <div class="industry-body">
+          <p class="industry-desc" data-i18n="i3.desc">Gestión de casos, seguimiento de clientes, generación de documentos y pipeline de captación automatizado.</p>
+          <div class="i-tags"><span class="i-tag" data-i18n="i3.t1">Gestión de Casos</span><span class="i-tag" data-i18n="i3.t2">Documentos IA</span><span class="i-tag" data-i18n="i3.t3">Pipeline</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ PROCESS ═══ -->
+<section id="proceso">
+  <div class="container">
+    <div class="process-layout">
+      <div>
+        <div class="sec-label reveal" data-i18n="proc.tag">Nuestro Proceso</div>
+        <h2 class="disp-lg reveal" style="margin-bottom:var(--sp-xl);" data-i18n="proc.title">De cero a automatizado<br />en 30 días.</h2>
+        <p class="body-lg reveal" style="color:var(--ink-muted);margin-bottom:var(--sp-xxl);" data-i18n="proc.sub">Un proceso probado. Sin sorpresas. Sin curva de aprendizaje para tu equipo.</p>
+        <div class="process-steps">
+          <div class="process-step reveal"><span class="step-n caption">01</span><div><div class="step-title" data-i18n="s1.t">Diagnóstico</div><div class="step-desc" data-i18n="s1.d">Auditamos tus procesos e identificamos el mayor punto de apalancamiento en 48 horas.</div></div></div>
+          <div class="process-step reveal"><span class="step-n caption">02</span><div><div class="step-title" data-i18n="s2.t">Diseño del Sistema</div><div class="step-desc" data-i18n="s2.d">Construimos el blueprint completo y lo validamos contigo antes de implementar.</div></div></div>
+          <div class="process-step reveal"><span class="step-n caption">03</span><div><div class="step-title" data-i18n="s3.t">Implementación</div><div class="step-desc" data-i18n="s3.d">Desplegamos el sistema en tu infraestructura. Tu equipo no necesita aprender nada nuevo.</div></div></div>
+          <div class="process-step reveal"><span class="step-n caption">04</span><div><div class="step-title" data-i18n="s4.t">Operación y Escala</div><div class="step-desc" data-i18n="s4.d">Monitoreamos, optimizamos y escalamos. Tú ves resultados; nosotros garantizamos el sistema.</div></div></div>
+        </div>
+      </div>
+      <div class="process-visual reveal">
+        <div class="pv-glow pv-g1"></div>
+        <div class="pv-glow pv-g2"></div>
+        <div class="pv-grid">
+          <div class="pv-tile"></div><div class="pv-tile"></div><div class="pv-tile"></div><div class="pv-tile"></div>
+          <div class="pv-tile"></div><div class="pv-tile"></div><div class="pv-tile"></div><div class="pv-tile"></div>
+          <div class="pv-tile"></div><div class="pv-tile"></div><div class="pv-tile"></div><div class="pv-tile"></div>
+          <div class="pv-tile"></div><div class="pv-tile"></div><div class="pv-tile"></div><div class="pv-tile"></div>
+        </div>
+        <div class="pv-badge">
+          <div class="pv-badge-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+          <div><div class="pv-badge-t">Sistema activo</div><div class="pv-badge-s">Resultados desde el día 1</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section>
+  <div class="container">
+    <div class="sec-label reveal" data-i18n="test.tag">Testimonios</div>
+    <h2 class="disp-lg reveal" style="margin-bottom:var(--sp-sec);" data-i18n="test.title">Lo que dicen nuestros clientes.</h2>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <p class="testi-q" data-i18n="t1.q">"Harmony IA transformó nuestra operación por completo. Lo que antes tomaba 4 horas ahora se hace en minutos. El ROI fue visible desde el primer mes — sin exageración."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:linear-gradient(135deg,#6a4cf5,#2a1a9f);">CM</div>
+          <div><div class="testi-name" data-i18n="t1.n">Carlos Martínez</div><div class="testi-role" data-i18n="t1.r">CEO · E-commerce LATAM</div></div>
+        </div>
+      </div>
+      <div class="testi reveal" style="transition-delay:.08s">
+        <p class="testi-q" data-i18n="t2.q">"Implementaron Harmony CRM en nuestra clínica y en 30 días ya no perdíamos pacientes por falta de seguimiento. Resultados reales, sin promesas vacías."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:linear-gradient(135deg,#d44df0,#7a0fb0);">LR</div>
+          <div><div class="testi-name" data-i18n="t2.n">Dra. Laura Rodríguez</div><div class="testi-role" data-i18n="t2.r">Directora · Red Médica Colombia</div></div>
+        </div>
+      </div>
+      <div class="testi reveal" style="transition-delay:.16s">
+        <p class="testi-q" data-i18n="t3.q">"Con Harmony Agents manejamos el triple de consultas sin contratar nuevo personal. Nuestro equipo ahora solo atiende los casos que realmente necesitan un humano."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:linear-gradient(135deg,#ff7a3d,#a03200);">JP</div>
+          <div><div class="testi-name" data-i18n="t3.n">Jorge Peña</div><div class="testi-role" data-i18n="t3.r">Fundador · Firma Legal México</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ PRICING — P9: Pricing signal ═══ -->
+<section id="precios">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:var(--sp-sec);" class="reveal">
+      <div class="sec-label" style="justify-content:center;" data-i18n="pr.tag">Inversión</div>
+      <h2 class="disp-lg" style="margin-bottom:var(--sp-lg);" data-i18n="pr.title">Transparencia desde el día 1.</h2>
+      <p class="body-lg" style="color:var(--ink-muted);max-width:480px;margin:0 auto;" data-i18n="pr.sub">Sin sorpresas. Sin contratos trampa. Resultados garantizados o lo arreglamos sin costo adicional.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan reveal">
+        <div><div class="plan-name" data-i18n="p1.n">Proyecto Único</div><div class="plan-sub" data-i18n="p1.s">Implementación completa, tuya para siempre</div></div>
+        <div class="plan-price"><span class="plan-from" data-i18n="from">Desde</span><span class="plan-num">$2,500</span><span class="plan-period">USD</span></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span><span data-i18n="p1.f1">1 flujo de automatización</span></li>
+          <li><span class="plan-check">✓</span><span data-i18n="p1.f2">Entrega en 5 días hábiles</span></li>
+          <li><span class="plan-check">✓</span><span data-i18n="p1.f3">30 días de soporte incluido</span></li>
+        </ul>
+        <div class="plan-cta"><a href="#contacto" class="btn btn-dark" style="width:100%;justify-content:center;" data-i18n="pr.cta">Empezar</a></div>
+      </div>
+      <div class="plan plan--feat reveal" style="transition-delay:.08s">
+        <div class="plan-badge" data-i18n="p2.badge">Más Popular</div>
+        <div><div class="plan-name" data-i18n="p2.n">Suscripción Operativa</div><div class="plan-sub" data-i18n="p2.s">Harmony opera y optimiza tus sistemas cada mes</div></div>
+        <div class="plan-price"><span class="plan-from" data-i18n="from">Desde</span><span class="plan-num gtext">$800</span><span class="plan-period">USD/mes</span></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span><span data-i18n="p2.f1">Flujos ilimitados activos</span></li>
+          <li><span class="plan-check">✓</span><span data-i18n="p2.f2">Monitoreo 24/7 incluido</span></li>
+          <li><span class="plan-check">✓</span><span data-i18n="p2.f3">Nuevas automatizaciones cada mes</span></li>
+          <li><span class="plan-check">✓</span><span data-i18n="p2.f4">Reporte mensual de ROI</span></li>
+        </ul>
+        <div class="plan-cta"><a href="#contacto" class="btn btn-grad" style="width:100%;justify-content:center;" data-i18n="pr.cta">Empezar</a></div>
+      </div>
+      <div class="plan reveal" style="transition-delay:.16s">
+        <div><div class="plan-name" data-i18n="p3.n">Ecosistema Completo</div><div class="plan-sub" data-i18n="p3.s">Los 3 pilares Harmony funcionando juntos</div></div>
+        <div class="plan-price"><span class="plan-from" data-i18n="from">Desde</span><span class="plan-num">$3,500</span><span class="plan-period">USD/mes</span></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span><span data-i18n="p3.f1">Harmony Automate + Agents + CRM</span></li>
+          <li><span class="plan-check">✓</span><span data-i18n="p3.f2">Equipo dedicado Harmony</span></li>
+          <li><span class="plan-check">✓</span><span data-i18n="p3.f3">SLA 99.9% garantizado</span></li>
+          <li><span class="plan-check">✓</span><span data-i18n="p3.f4">Onboarding en persona</span></li>
+        </ul>
+        <div class="plan-cta"><a href="#contacto" class="btn btn-dark" style="width:100%;justify-content:center;" data-i18n="pr.cta">Empezar</a></div>
+      </div>
+    </div>
+    <div class="guarantee reveal">
+      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-text">
+        <strong data-i18n="g.title">Garantía de resultados:</strong>
+        <span data-i18n="g.text"> Si en 90 días no ves un ROI medible de tu inversión, trabajamos sin costo adicional hasta conseguirlo. Sin letra pequeña.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CONTACT — P3: Deliverable CTA + scarcity ═══ -->
+<section id="contacto" style="padding:0 0 var(--sp-sec);">
+  <div class="container">
+    <div class="contact-box reveal">
+      <div class="contact-glow"></div>
+      <div class="contact-inner">
+        <div>
+          <div class="cta-scarcity"><span class="cta-dot"></span><span class="caption" data-i18n="cta.tag">Solo 5 cupos disponibles este mes</span></div>
+          <h2 class="disp-xl" style="margin-bottom:var(--sp-xl);" data-i18n="cta.title">¿Listo para que tu negocio trabaje mientras duermes?</h2>
+          <p class="body-lg" style="color:var(--ink-muted);max-width:440px;" data-i18n="cta.sub">Agenda tu Diagnóstico Harmony gratuito. En 30 minutos identificamos el mayor punto de apalancamiento de automatización en tu empresa — sin costo, sin compromiso.</p>
+        </div>
+        <div class="contact-form">
+          <div class="form-group">
+            <label class="form-label" data-i18n="f.name">Nombre completo</label>
+            <input class="form-input" type="text" placeholder="Nombre completo" data-placeholder-i18n="f.name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="f.email">Email empresarial</label>
+            <input class="form-input" type="email" placeholder="Email empresarial" data-placeholder-i18n="f.email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="f.company">Empresa</label>
+            <input class="form-input" type="text" placeholder="Empresa" data-placeholder-i18n="f.company" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="f.ind">Industria</label>
+            <select class="form-select">
+              <option value="" data-i18n="f.ind">Industria</option>
+              <option value="clinic" data-i18n="f.clinic">Clínica / Consultorio</option>
+              <option value="ecom" data-i18n="f.ecom">E-commerce</option>
+              <option value="legal" data-i18n="f.legal">Firma Legal</option>
+              <option value="agency" data-i18n="f.agency">Agencia</option>
+              <option value="other" data-i18n="f.other">Otra</option>
+            </select>
+          </div>
+          <button class="btn btn-grad" style="width:100%;justify-content:center;padding:14px;" data-i18n="f.submit">
+            Recibir mi Diagnóstico Harmony Gratis →
+          </button>
+          <p class="form-privacy" data-i18n="f.privacy">Sin spam. Respondemos en menos de 24 horas. Tu información es privada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CINEMATIC FOOTER ═══ -->
+<div class="footer-curtain-wrap" id="footer-curtain-wrap">
+  <div class="footer-curtain-inner" id="footer-curtain-inner">
+    <footer class="cinematic-footer" id="cinematic-footer">
+      <!-- Grid background -->
+      <div class="cf-grid"></div>
+      <!-- Aurora glow -->
+      <div class="cf-aurora"></div>
+      <!-- Giant background text -->
+      <div class="cf-bg-text" id="cf-bg-text">HARMONY</div>
+
+      <!-- Scrolling marquee -->
+      <div class="cf-marquee-wrap">
+        <div class="cf-marquee-track" id="cf-marquee">
+          <span>Harmony Automate</span><span class="accent">✦</span>
+          <span>Harmony Agents</span><span class="accent">✦</span>
+          <span>Harmony CRM</span><span class="accent">✦</span>
+          <span>LATAM AI Automation</span><span class="accent">✦</span>
+          <span>n8n · WhatsApp · Voice · GoHighLevel</span><span class="accent">✦</span>
+          <span>Harmony Automate</span><span class="accent">✦</span>
+          <span>Harmony Agents</span><span class="accent">✦</span>
+          <span>Harmony CRM</span><span class="accent">✦</span>
+          <span>LATAM AI Automation</span><span class="accent">✦</span>
+          <span>n8n · WhatsApp · Voice · GoHighLevel</span><span class="accent">✦</span>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="cf-content">
+        <div class="cf-top">
+          <h2 class="cf-heading" id="cf-heading">
+            <span data-i18n="cta.title">¿Listo para que tu negocio trabaje mientras duermes?</span>
+          </h2>
+          <div class="cf-pills" id="cf-pills">
+            <a href="#contacto" class="cf-pill cf-pill-primary magnetic-pill" id="pill-diag">
+              <span class="cf-heartbeat">⚡</span>
+              <span data-i18n="hero.cta1">Diagnóstico Harmony Gratis</span>
+            </a>
+            <a href="#servicios" class="cf-pill cf-pill-ghost magnetic-pill">
+              <span data-i18n="nav.services">Servicios</span>
+              <span>→</span>
+            </a>
+            <a href="https://wa.me/573001234567" class="cf-pill cf-pill-ghost magnetic-pill" target="_blank" rel="noopener">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="cf-bottom">
+          <p class="cf-copy">
+            © 2026 Harmony IA &nbsp;·&nbsp;
+            <a href="#" data-i18n="ft.priv">Privacidad</a>
+            &nbsp;·&nbsp;
+            <a href="#" data-i18n="ft.terms">Términos</a>
+            &nbsp;·&nbsp;
+            <span data-i18n="ft.desc" style="opacity:0.6">Automatizamos empresas en LATAM.</span>
+          </p>
+          <div class="cf-socials">
+            <a href="#" class="cf-social" title="LinkedIn">in</a>
+            <a href="#" class="cf-social" title="X">𝕏</a>
+            <a href="#" class="cf-social" title="Instagram">Ig</a>
+            <a href="#" class="cf-social" title="WhatsApp">W</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+
+<script>
+/* ═══ TRANSLATIONS ═══ */
+const T={es:{'nav.services':'Servicios','nav.industries':'Industrias','nav.cases':'Casos de Éxito','nav.process':'Proceso','nav.pricing':'Precios','nav.cta':'Diagnóstico Gratis','hero.tag':'No asesoramos. Implementamos.','hero.line1':'Deja de hacer manualmente','hero.line2':'lo que ya hace la IA.','hero.sub':'Implementamos flujos autónomos, agentes conversacionales y CRM inteligente en tu empresa — en 30 días, con ROI medible desde el primer mes.','hero.cta1':'Diagnóstico Harmony Gratis','hero.scarcity':'Solo 5 cupos este mes','hero.trusted':'Alianzas Tecnológicas','stats.s1':'Reducción en tareas manuales','stats.s2':'ROI promedio en 90 días','stats.s3':'Tiempo promedio de entrega','stats.s4':'Empresas automatizadas','srv.tag':'Nuestros Servicios','srv.title':'Tres pilares. Un ecosistema.','srv.sub':'No vendemos licencias ni herramientas. Vendemos resultados medibles con sistemas que operamos a diario.','a.title':'Automatización Inteligente','a.desc':'Convertimos procesos repetitivos en flujos autónomos que trabajan 24/7. Tu equipo se enfoca en decisiones; nuestros sistemas hacen el resto.','a.f1':'Harmony Lead Engine','a.f2':'Harmony Ops Workflows','a.f3':'Harmony AI Copilot','b.title':'Agentes IA Conversacionales','b.desc':'Agentes de IA que responden, califican y cierran clientes — en texto y voz — en cualquier canal. Disponibles 24/7, sin fatiga, sin errores.','b.f1':'Harmony Sales Agent','b.f2':'Harmony Voice Closer','b.f3':'Harmony Support Agent','c.title':'CRM Inteligente a Medida','c.desc':'Implementamos y operamos tu CRM con IA integrada — trazabilidad completa de cada lead, cliente y oportunidad, sin fricción para tu equipo.','c.f1':'Harmony Pipeline OS','c.f2':'Harmony Multi-Location','c.f3':'Harmony Agency Suite','srv.more':'Ver más','popular':'Popular','diff.a':'"No somos consultores que asesoran desde presentaciones.','diff.b':' Implementamos, integramos y operamos — ','diff.c':'nosotros, en tu negocio, desde el día 1."','cs.tag':'Casos de Éxito','cs.title':'Números que no mienten.','cs.cta':'Ver caso completo','cs1.tag':'E-commerce · Harmony Automate','cs1.title':'De 4 horas a 90 segundos: tiempo de respuesta al cliente','cs1.desc':'Un e-commerce con 3,000+ pedidos mensuales perdía ventas por respuestas lentas. Implementamos Harmony Agents + Harmony CRM. En 30 días, el tiempo de respuesta cayó un 97%.','cs1.m1':'Reducción tiempo de respuesta','cs1.m2':'USD ahorrados en 90 días','cs1.m3':'Horas semanales recuperadas','cs1.m4':'ROI en el primer trimestre','cs1.chart':'Tiempo de respuesta promedio','cs1.before':'Antes','cs1.after':'Harmony','cs2.tag':'Clínica · Harmony Agents','cs2.desc':'Aumento en leads calificados para una red de clínicas en Colombia tras implementar Harmony Sales Agent.','cs3.tag':'Legal · Harmony CRM','cs3.desc':'Reducción en costos operativos para una firma legal en México con Harmony Pipeline OS implementado.','cs4.tag':'Agencia · Harmony Automate','cs4.desc':'En pipeline generado en 6 meses para una agencia de marketing con Harmony Lead Engine activo.','ind.tag':'Industrias','ind.title':'Construido para tu sector.','ind.sub':'No ofrecemos soluciones genéricas. Cada implementación parte del contexto real de tu industria.','i1.title':'Clínicas y Consultorios','i1.desc':'Agendamiento automático, seguimiento de pacientes, recordatorios inteligentes y gestión de pipeline médico.','i1.t1':'Agenda IA','i1.t2':'Recordatorios','i1.t3':'CRM Médico','i2.title':'E-commerce LATAM','i2.desc':'Atención 24/7, recuperación de carritos, automatización de pedidos y retención inteligente de compradores.','i2.t1':'Atención 24/7','i2.t2':'Recuperación','i2.t3':'Retención','i3.title':'Firmas Legales','i3.desc':'Gestión de casos, seguimiento de clientes, generación de documentos y pipeline de captación automatizado.','i3.t1':'Gestión de Casos','i3.t2':'Documentos IA','i3.t3':'Pipeline','proc.tag':'Nuestro Proceso','proc.title':'De cero a automatizado en 30 días.','proc.sub':'Un proceso probado. Sin sorpresas. Sin curva de aprendizaje para tu equipo.','s1.t':'Diagnóstico','s1.d':'Auditamos tus procesos e identificamos el mayor punto de apalancamiento en 48 horas.','s2.t':'Diseño del Sistema','s2.d':'Construimos el blueprint completo y lo validamos contigo antes de implementar.','s3.t':'Implementación','s3.d':'Desplegamos el sistema en tu infraestructura. Tu equipo no necesita aprender nada nuevo.','s4.t':'Operación y Escala','s4.d':'Monitoreamos, optimizamos y escalamos. Tú ves resultados; nosotros garantizamos el sistema.','test.tag':'Testimonios','test.title':'Lo que dicen nuestros clientes.','t1.q':'"Harmony IA transformó nuestra operación por completo. Lo que antes tomaba 4 horas ahora se hace en minutos. El ROI fue visible desde el primer mes — sin exageración."','t1.n':'Carlos Martínez','t1.r':'CEO · E-commerce LATAM','t2.q':'"Implementaron Harmony CRM en nuestra clínica y en 30 días ya no perdíamos pacientes por falta de seguimiento. Resultados reales, sin promesas vacías."','t2.n':'Dra. Laura Rodríguez','t2.r':'Directora · Red Médica Colombia','t3.q':'"Con Harmony Agents manejamos el triple de consultas sin contratar nuevo personal. Nuestro equipo ahora solo atiende los casos que realmente necesitan un humano."','t3.n':'Jorge Peña','t3.r':'Fundador · Firma Legal México','pr.tag':'Inversión','pr.title':'Transparencia desde el día 1.','pr.sub':'Sin sorpresas. Sin contratos trampa. Resultados garantizados o lo arreglamos sin costo adicional.','p1.n':'Proyecto Único','p1.s':'Implementación completa, tuya para siempre','from':'Desde','p1.f1':'1 flujo de automatización','p1.f2':'Entrega en 5 días hábiles','p1.f3':'30 días de soporte incluido','p2.badge':'Más Popular','p2.n':'Suscripción Operativa','p2.s':'Harmony opera y optimiza tus sistemas cada mes','p2.f1':'Flujos ilimitados activos','p2.f2':'Monitoreo 24/7 incluido','p2.f3':'Nuevas automatizaciones cada mes','p2.f4':'Reporte mensual de ROI','p3.n':'Ecosistema Completo','p3.s':'Los 3 pilares Harmony funcionando juntos','p3.f1':'Harmony Automate + Agents + CRM','p3.f2':'Equipo dedicado Harmony','p3.f3':'SLA 99.9% garantizado','p3.f4':'Onboarding en persona','pr.cta':'Empezar','g.title':'Garantía de resultados:','g.text':' Si en 90 días no ves un ROI medible de tu inversión, trabajamos sin costo adicional hasta conseguirlo. Sin letra pequeña.','cta.tag':'Solo 5 cupos disponibles este mes','cta.title':'¿Listo para que tu negocio trabaje mientras duermes?','cta.sub':'Agenda tu Diagnóstico Harmony gratuito. En 30 minutos identificamos el mayor punto de apalancamiento de automatización en tu empresa — sin costo, sin compromiso.','f.name':'Nombre completo','f.email':'Email empresarial','f.company':'Empresa','f.ind':'Industria','f.clinic':'Clínica / Consultorio','f.ecom':'E-commerce','f.legal':'Firma Legal','f.agency':'Agencia','f.other':'Otra','f.submit':'Recibir mi Diagnóstico Harmony Gratis →','f.privacy':'Sin spam. Respondemos en menos de 24 horas. Tu información es privada.','ft.desc':'Automatizamos empresas en LATAM con IA aplicada. No asesoramos — implementamos.','ft.srv':'Servicios','ft.co':'Compañía','ft.cases':'Casos de Éxito','ft.pricing':'Precios','ft.diag':'Diagnóstico Gratis','ft.rights':'Todos los derechos reservados.','ft.priv':'Privacidad','ft.terms':'Términos'},en:{'nav.services':'Services','nav.industries':'Industries','nav.cases':'Success Stories','nav.process':'Process','nav.pricing':'Pricing','nav.cta':'Free Audit','hero.tag':'We don\'t consult. We implement.','hero.line1':'Stop doing manually','hero.line2':'what AI already does.','hero.sub':'We deploy autonomous flows, conversational agents and smart CRM in your company — in 30 days, with measurable ROI from month one.','hero.cta1':'Get My Free Harmony Audit','hero.scarcity':'Only 5 spots this month','hero.trusted':'Technology Partnerships','stats.s1':'Reduction in manual tasks','stats.s2':'Average ROI in 90 days','stats.s3':'Average delivery time','stats.s4':'Businesses automated','srv.tag':'Our Services','srv.title':'Three pillars. One ecosystem.','srv.sub':'We don\'t sell licenses or tools. We sell measurable results with systems we operate every day.','a.title':'Intelligent Automation','a.desc':'We turn repetitive processes into autonomous flows that work 24/7. Your team focuses on decisions; our systems do the rest.','a.f1':'Harmony Lead Engine','a.f2':'Harmony Ops Workflows','a.f3':'Harmony AI Copilot','b.title':'Conversational AI Agents','b.desc':'AI agents that respond, qualify and close customers — in text and voice — on any channel. Available 24/7, without fatigue or errors.','b.f1':'Harmony Sales Agent','b.f2':'Harmony Voice Closer','b.f3':'Harmony Support Agent','c.title':'Custom AI CRM','c.desc':'We implement and operate your CRM with integrated AI — complete traceability of every lead, customer and opportunity, without friction for your team.','c.f1':'Harmony Pipeline OS','c.f2':'Harmony Multi-Location','c.f3':'Harmony Agency Suite','srv.more':'Learn more','popular':'Popular','diff.a':'"We\'re not consultants advising from presentations.','diff.b':' We implement, integrate and operate — ','diff.c':'us, in your business, from day 1."','cs.tag':'Success Stories','cs.title':'Numbers that don\'t lie.','cs.cta':'See full case study','cs1.tag':'E-commerce · Harmony Automate','cs1.title':'From 4 hours to 90 seconds: customer response time','cs1.desc':'An e-commerce with 3,000+ monthly orders was losing sales due to slow responses. We deployed Harmony Agents + Harmony CRM. In 30 days, response time dropped 97%.','cs1.m1':'Response time reduction','cs1.m2':'USD saved in 90 days','cs1.m3':'Weekly hours recovered','cs1.m4':'ROI in first quarter','cs1.chart':'Average response time','cs1.before':'Before','cs1.after':'Harmony','cs2.tag':'Clinic · Harmony Agents','cs2.desc':'Increase in qualified leads for a clinic network in Colombia after deploying Harmony Sales Agent.','cs3.tag':'Legal · Harmony CRM','cs3.desc':'Reduction in operating costs for a mid-size law firm in Mexico with Harmony Pipeline OS.','cs4.tag':'Agency · Harmony Automate','cs4.desc':'In pipeline generated in 6 months for a marketing agency with Harmony Lead Engine active.','ind.tag':'Industries','ind.title':'Built for your sector.','ind.sub':'No generic solutions. Every implementation starts from your industry\'s real context.','i1.title':'Clinics & Medical Practices','i1.desc':'Automatic scheduling, patient follow-up, smart reminders and medical pipeline management.','i1.t1':'AI Scheduling','i1.t2':'Reminders','i1.t3':'Medical CRM','i2.title':'LATAM E-commerce','i2.desc':'24/7 customer support, cart recovery, order automation and intelligent buyer retention.','i2.t1':'24/7 Support','i2.t2':'Recovery','i2.t3':'Retention','i3.title':'Law Firms','i3.desc':'Case management, client follow-up, document generation and automated client acquisition pipeline.','i3.t1':'Case Management','i3.t2':'AI Documents','i3.t3':'Pipeline','proc.tag':'Our Process','proc.title':'From zero to automated in 30 days.','proc.sub':'A proven process. No surprises. No learning curve for your team.','s1.t':'Diagnosis','s1.d':'We audit your processes and identify the biggest leverage point in 48 hours.','s2.t':'System Design','s2.d':'We build the full blueprint and validate it with you before implementing.','s3.t':'Implementation','s3.d':'We deploy the system on your infrastructure. Your team doesn\'t need to learn anything new.','s4.t':'Operation & Scale','s4.d':'We monitor, optimize and scale. You see results; we guarantee the system.','test.tag':'Testimonials','test.title':'What our clients say.','t1.q':'"Harmony IA completely transformed our operations. What used to take 4 hours now happens in minutes. ROI was visible from the first month — no exaggeration."','t1.n':'Carlos Martínez','t1.r':'CEO · LATAM E-commerce','t2.q':'"They implemented Harmony CRM in our clinic and within 30 days we stopped losing patients due to lack of follow-up. Real results, no empty promises."','t2.n':'Dr. Laura Rodríguez','t2.r':'Director · Colombia Medical Network','t3.q':'"With Harmony Agents we handle triple the inquiries without hiring new staff. Our team now only handles cases that truly need a human."','t3.n':'Jorge Peña','t3.r':'Founder · Mexico Law Firm','pr.tag':'Investment','pr.title':'Transparency from day 1.','pr.sub':'No surprises. No trap contracts. Guaranteed results or we fix it at no extra cost.','p1.n':'One-Time Project','p1.s':'Full implementation, yours forever','from':'Starting from','p1.f1':'1 automation flow','p1.f2':'Delivered in 5 business days','p1.f3':'30 days of support included','p2.badge':'Most Popular','p2.n':'Operational Subscription','p2.s':'Harmony operates and optimizes your systems monthly','p2.f1':'Unlimited active flows','p2.f2':'24/7 monitoring included','p2.f3':'New automations every month','p2.f4':'Monthly ROI report','p3.n':'Full Ecosystem','p3.s':'All 3 Harmony pillars working together','p3.f1':'Harmony Automate + Agents + CRM','p3.f2':'Dedicated Harmony team','p3.f3':'99.9% SLA guaranteed','p3.f4':'In-person onboarding','pr.cta':'Get Started','g.title':'Results guarantee:','g.text':' If in 90 days you don\'t see a measurable ROI, we work at no additional cost until you do. No fine print.','cta.tag':'Only 5 spots available this month','cta.title':'Ready for your business to work while you sleep?','cta.sub':'Schedule your free Harmony Audit. In 30 minutes we identify the biggest automation leverage point in your company — no cost, no commitment.','f.name':'Full name','f.email':'Business email','f.company':'Company','f.ind':'Industry','f.clinic':'Clinic / Medical Practice','f.ecom':'E-commerce','f.legal':'Law Firm','f.agency':'Agency','f.other':'Other','f.submit':'Get My Free Harmony Audit →','f.privacy':'No spam. We reply within 24 hours. Your info is private.','ft.desc':'We automate businesses across LATAM with applied AI. We don\'t consult — we implement.','ft.srv':'Services','ft.co':'Company','ft.cases':'Success Stories','ft.pricing':'Pricing','ft.diag':'Free Audit','ft.rights':'All rights reserved.','ft.priv':'Privacy','ft.terms':'Terms'}};
+
+let lang='es';
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll(`[id^="btn-${l}"]`).forEach(b=>b.classList.add('active'));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[l][k]!==undefined)el.textContent=T[l][k];});
+  document.querySelectorAll('[data-placeholder-i18n]').forEach(el=>{const k=el.getAttribute('data-placeholder-i18n');if(T[l][k])el.placeholder=T[l][k];});
+  document.documentElement.lang=l;
+  document.title=l==='es'?'Harmony IA — AI que paga sola en 90 días':'Harmony IA — AI That Pays for Itself in 90 Days';
+}
+
+/* Nav scroll */
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40);},{passive:true});
+
+/* Hamburger */
+let menuOpen=false;
+document.getElementById('hamburger').addEventListener('click',()=>{menuOpen=!menuOpen;document.getElementById('mobileMenu').classList.toggle('open',menuOpen);});
+document.querySelectorAll('.nav-ml,.mobile-menu-btns .btn').forEach(el=>{el.addEventListener('click',()=>{menuOpen=false;document.getElementById('mobileMenu').classList.remove('open');});});
+
+/* Scroll reveal */
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+/* Antigravity cursor parallax */
+(function(){
+  const cards = document.querySelectorAll('.float-card[data-speed]');
+  let raf;
+  let tx = {}, ty = {};
+  cards.forEach((c,i) => { tx[i] = 0; ty[i] = 0; });
+  document.addEventListener('mousemove', e => {
+    const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx, dy = (e.clientY - cy) / cy;
+    cards.forEach((c,i) => {
+      const s = parseFloat(c.dataset.speed || 0.03) * 120;
+      tx[i] = dx * s; ty[i] = dy * s;
+    });
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      cards.forEach((c,i) => {
+        c.style.setProperty('--mx', tx[i].toFixed(1) + 'px');
+        c.style.setProperty('--my', ty[i].toFixed(1) + 'px');
+      });
+    });
+  }, { passive: true });
+})();
+
+/* Count-up */
+function countUp(el){
+  const target=parseInt(el.dataset.countup),suffix=el.dataset.suffix||'',dur=2000,start=performance.now();
+  (function tick(now){const p=Math.min((now-start)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*target)+suffix;if(p<1)requestAnimationFrame(tick);else el.textContent=target+suffix;})(start);
+}
+const co=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){countUp(e.target);co.unobserve(e.target);}});},{threshold:0.5});
+document.querySelectorAll('[data-countup]').forEach(el=>co.observe(el));
+</script>
+
+<!-- GSAP + ScrollTrigger for cinematic footer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function initCinematicFooter() {
+  if (typeof gsap === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const wrap = document.getElementById('footer-curtain-wrap');
+  if (!wrap) return;
+
+  /* ── Curtain reveal: heading + pills stagger ── */
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: wrap,
+      start: 'top 85%',
+      end: 'bottom bottom',
+      toggleActions: 'play none none none'
+    }
+  });
+  tl.from('#cf-heading', { y: 60, opacity: 0, duration: 1, ease: 'power3.out' })
+    .from('#cf-pills .cf-pill', { y: 30, opacity: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out' }, '-=0.5')
+    .from('.cf-bottom', { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' }, '-=0.3');
+
+  /* ── Giant bg text parallax ── */
+  gsap.to('#cf-bg-text', {
+    y: -80,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: wrap,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 2
+    }
+  });
+
+  /* ── Magnetic pill buttons ── */
+  document.querySelectorAll('.magnetic-pill').forEach(pill => {
+    pill.addEventListener('mousemove', function(e) {
+      const r = pill.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dx = (e.clientX - cx) * 0.28;
+      const dy = (e.clientY - cy) * 0.28;
+      gsap.to(pill, { x: dx, y: dy, duration: 0.3, ease: 'power2.out' });
+    });
+    pill.addEventListener('mouseleave', function() {
+      gsap.to(pill, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,0.5)' });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
